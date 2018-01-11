@@ -1,19 +1,25 @@
-console.log("hello world!");
-
 var ws = new WebSocket("ws://localhost:8080/chat");
 
 ws.onerror = function (event) {
     console.log(event.data);
 }
 
-ws.onMessage = function(event) {
+ws.onmessage = function(event) {
     messageObj = JSON.parse(event.data);
-    
+    console.log(messageObj);
+
+    $(function () {
+        $("#receiveMessageBox").append("<p>" + messageObj["username"] + " : " + messageObj["message"] + "</p>");
+    });
 }
 
-$(function () {
-    $("<p>This a scripted test!</p>").appendTo("#receiveMessageBox")
-});
+ws.onopen = function(event) {
+    console.log("connection established!");
 
+    let objToSend = {
+        "username": "html client",
+        "message": "hello world!"
+    }
 
-console.log("ran jquery");
+    ws.send(JSON.stringify(objToSend));
+}
