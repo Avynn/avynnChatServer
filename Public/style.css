@@ -56,6 +56,9 @@ body {
 }
 
 #receiveMessageBox {
+
+    overflow: auto;
+
     background-color: rgb(209, 226, 211);
     width: 98%;
     height: 92%;

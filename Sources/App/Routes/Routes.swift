@@ -19,7 +19,7 @@ extension Droplet {
             var userName: String? = nil
             var firstMessage: Bool = true
             
-            try background{
+            background{
                 while(ws.state == .open){
                     try? ws.ping()
                     self.console.wait(seconds: 20)

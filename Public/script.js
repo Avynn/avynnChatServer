@@ -1,4 +1,4 @@
-var ws = new WebSocket("ws://localhost:8080/chat");
+var ws = new WebSocket("ws://10.111.61.161:8080/chat");
 let username = window.prompt("Choose a username");
 
 ws.onerror = function (event) {
@@ -7,7 +7,6 @@ ws.onerror = function (event) {
 
 ws.onmessage = function(event) {
     messageObj = JSON.parse(event.data);
-    console.log(messageObj);
 
     $(function () {
         $("#receiveMessageBox").append("<p>" + messageObj["username"] + " : " + messageObj["message"] + "</p>");
@@ -16,13 +15,6 @@ ws.onmessage = function(event) {
 
 ws.onopen = function(event) {
     console.log("connection established!");
-
-    let objToSend = {
-        "username": username,
-        "message": "hello world!"
-    }
-
-    ws.send(JSON.stringify(objToSend));
 }
 
 $(function () {
