@@ -2,6 +2,10 @@ import Vapor
 
 let room = Room()
 
+/*
+    wow this is really neat! 
+*/
+
 extension Droplet {
     
     func setupRoutes() throws {
